@@ -13,7 +13,7 @@ module "vcn" {
   # Optional Inputs
   vcn_name = "vcn-constellation"
   vcn_dns_label = "jonathan"
-  vcn_cidrs = ["10.0.0.0/16"]
+  vcn_cidrs = [var.vcn_cidr_range]
   
   create_internet_gateway = true
   create_nat_gateway = true

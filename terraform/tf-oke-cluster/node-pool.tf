@@ -1,15 +1,10 @@
-variable "oracle_8_10" {
-  description = "OS image for Oracle Linux 8.10"
-  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaaekleu5ti4ljq3kuu54c6jbr7pqnhrydepjlpuzpanwyuxxwf66gq"
-}
-
 # Source from https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/containerengine_node_pool
 
 resource "oci_containerengine_node_pool" "oke-node-pool" {
     # Required
     cluster_id = oci_containerengine_cluster.oke-cluster.id
     compartment_id = oci_identity_compartment.tf-compartment.id
-    kubernetes_version = "v1.30.1"
+    kubernetes_version = var.kubernetes_node_version
     name = "constellation-node-pool"
     node_config_details{
         placement_configs{
@@ -22,7 +17,7 @@ resource "oci_containerengine_node_pool" "oke-node-pool" {
         }
         size = 2
     }
-    node_shape = "VM.Standard.A1.Flex"
+    node_shape = var.worker_node_shape
     node_shape_config {
         memory_in_gbs = 12
         ocpus         = 2

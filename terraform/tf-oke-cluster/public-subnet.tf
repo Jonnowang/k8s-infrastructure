@@ -5,7 +5,8 @@ resource "oci_core_subnet" "vcn-public-subnet"{
   # Required
   compartment_id = oci_identity_compartment.tf-compartment.id
   vcn_id = module.vcn.vcn_id
-  cidr_block = "10.0.0.0/24"
+  cidr_block = var.public_subnet_cidr_range
+  dns_label = var.subnet_dns_label
  
   # Optional
   route_table_id = module.vcn.ig_route_id
