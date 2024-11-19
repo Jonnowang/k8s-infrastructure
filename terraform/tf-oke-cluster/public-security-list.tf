@@ -16,18 +16,40 @@ resource "oci_core_security_list" "public-security-list"{
 			protocol = "all" 
 	}
 
-	# SSH ingress
+	# HTTP and HTTPS ingress
 	ingress_security_rules { 
       stateless = false
       source = "0.0.0.0/0"
       source_type = "CIDR_BLOCK"
-      # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
       protocol = "6"
       tcp_options { 
-          min = 22
-          max = 22
+          min = 80
+          max = 80
       }
-    }
+  }
+
+	ingress_security_rules { 
+      stateless = false
+      source = "0.0.0.0/0"
+      source_type = "CIDR_BLOCK"
+      protocol = "6"
+      tcp_options { 
+          min = 443
+          max = 443
+      }
+  }
+
+  # Kubernetes API ingress
+  ingress_security_rules {
+      stateless   = false
+      source      = "0.0.0.0/0"
+      source_type = "CIDR_BLOCK"
+      protocol    = "6"
+      tcp_options {
+          min = 6443
+          max = 6443
+      }
+  }
 
   ingress_security_rules { 
       stateless = false
