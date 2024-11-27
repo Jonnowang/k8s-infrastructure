@@ -1,0 +1,42 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: constellation-gateway
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: constellation-gateway
+spec:
+  gatewayClassName: constellation-gateway
+  infrastructure:
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: constellation-proxy-config
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+    - name: https
+      protocol: HTTPS
+      port: 443
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: constellation-proxy-config
+  namespace: development
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        annotations:
+          # Force proxy deployment to use these settings for deployment
+          oci.oraclecloud.com/load-balancer-type: "lb"
+          service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+          service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+          service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
