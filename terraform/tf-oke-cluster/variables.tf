@@ -39,20 +39,32 @@ variable services_cidr_range {
 
 # Worker node definitions
 
-variable oracle_8_10 {
+variable ubuntu_2404_minimal_aarch {
   type        = string
-  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaaekleu5ti4ljq3kuu54c6jbr7pqnhrydepjlpuzpanwyuxxwf66gq"
-  description = "OS image for Oracle Linux 8.10"
+  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaa4z7qr5ccidp4dowvqrb65v4qnrmzmx346q7gkvsbw6vfwxh6bkfq"
+  description = "OS image for Ubuntu 24.04 Minimal AArch64"
 }
 
-variable worker_node_shape {
+variable ubuntu_2404_minimal_amd {
+  type        = string
+  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaaaghag4jvfj64zh6pnut7pihu3vke3tzihzp3mz2b5lifwoo3jqka"
+  description = "OS image for Ubuntu 24.04 Minimal Amd64"
+}
+
+variable worker_node_shape_arm {
   type        = string
   default     = "VM.Standard.A1.Flex"
   description = "Standard ARM based Ampere shape"
 }
 
+variable worker_node_shape_amd {
+  type        = string
+  default     = "VM.Standard.E2.1.Micro"
+  description = "Micro AMD based shape"
+}
+
 variable kubernetes_node_version {
   type        = string
-  default     = "v1.30.1"
+  default     = "v1.31.1"
   description = "Current version of Kubernetes to use for OKE cluster"
 }

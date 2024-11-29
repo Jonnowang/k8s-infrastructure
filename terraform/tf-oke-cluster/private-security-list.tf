@@ -10,18 +10,17 @@ resource "oci_core_security_list" "private-security-list"{
   display_name = "private-subnet-security-list"
 
 	egress_security_rules {
-			stateless = false
-			destination = "0.0.0.0/0"
-			destination_type = "CIDR_BLOCK"
-			protocol = "all" 
+        stateless = false
+        destination = "0.0.0.0/0"
+        destination_type = "CIDR_BLOCK"
+        protocol = "all" 
 	}
 
 	# Give all services in VCN ingress to the private subnet
 	ingress_security_rules { 
-      stateless = false
-      source = "10.0.0.0/16"
-      source_type = "CIDR_BLOCK"
-      protocol = "all"
-    }
+        stateless = false
+        source = "0.0.0.0/0"
+        source_type = "CIDR_BLOCK"
+        protocol = "all"
+  }
 }
-  
