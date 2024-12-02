@@ -36,40 +36,59 @@ output "id-for-for-route-table-that-includes-the-nat-gateway" {
 }
 
 
-# Outputs for private security list
-output "private-security-list-name" {
-  value = oci_core_security_list.private-security-list.display_name
+# Outputs for security lists
+output "kubernetes-api-security-list-name" {
+  value = oci_core_security_list.kubernetes-api-security-list.display_name
 }
-output "private-security-list-OCID" {
-  value = oci_core_security_list.private-security-list.id
+output "kubernetes-api-security-list-OCID" {
+  value = oci_core_security_list.kubernetes-api-security-list.id
+}
+output "worker-node-security-list-name" {
+  value = oci_core_security_list.worker-node-security-list.display_name
+}
+output "worker-node-security-list-OCID" {
+  value = oci_core_security_list.worker-node-security-list.id
+}
+output "pods-security-list-name" {
+  value = oci_core_security_list.pods-security-list.display_name
+}
+output "pods-security-list-OCID" {
+  value = oci_core_security_list.pods-security-list.id
+}
+output "public-lb-security-list-name" {
+  value = oci_core_security_list.public-lb-security-list.display_name
+}
+output "public-lb-security-list-OCID" {
+  value = oci_core_security_list.public-lb-security-list.id
 }
 
 
-# Outputs for public security list
-output "public-security-list-name" {
-  value = oci_core_security_list.public-security-list.display_name
+# Outputs for subnets
+output "kubernetes-api-subnet-name" {
+  value = oci_core_subnet.vcn-kubernetes-api-subnet.display_name
 }
-output "public-security-list-OCID" {
-  value = oci_core_security_list.public-security-list.id
+output "kubernetes-api-subnet-OCID" {
+  value = oci_core_subnet.vcn-kubernetes-api-subnet.id
+}
+output "worker-node-subnet-name" {
+  value = oci_core_subnet.vcn-worker-node-subnet.display_name
+}
+output "worker-node-subnet-OCID" {
+  value = oci_core_subnet.vcn-worker-node-subnet.id
+}
+output "pods-subnet-name" {
+  value = oci_core_subnet.vcn-pods-subnet.display_name
+}
+output "pods-subnet-OCID" {
+  value = oci_core_subnet.vcn-pods-subnet.id
+}
+output "public-lb-subnet-name" {
+  value = oci_core_subnet.vcn-public-lb-subnet.display_name
+}
+output "public-lb-subnet-OCID" {
+  value = oci_core_subnet.vcn-public-lb-subnet.id
 }
 
-
-# Outputs for private subnet
-output "private-subnet-name" {
-  value = oci_core_subnet.vcn-private-subnet.display_name
-}
-output "private-subnet-OCID" {
-  value = oci_core_subnet.vcn-private-subnet.id
-}
-
-
-# Outputs for public subnet
-output "public-subnet-name" {
-  value = oci_core_subnet.vcn-public-subnet.display_name
-}
-output "public-subnet-OCID" {
-  value = oci_core_subnet.vcn-public-subnet.id
-}
 
 # Outputs for k8s cluster
 
@@ -86,20 +105,36 @@ output "cluster-state" {
   value = oci_containerengine_cluster.oke-cluster.state
 }
 
-# Outputs for k8s node pool
+# Outputs for k8s node pools
 
-output "node-pool-name" {
-  value = oci_containerengine_node_pool.oke-node-pool.name
+output "arm-node-pool-name" {
+  value = oci_containerengine_node_pool.oke-arm-node-pool.name
 }
-output "node-pool-OCID" {
-  value = oci_containerengine_node_pool.oke-node-pool.id
+output "arm-node-pool-OCID" {
+  value = oci_containerengine_node_pool.oke-arm-node-pool.id
 }
-output "node-pool-kubernetes-version" {
-  value = oci_containerengine_node_pool.oke-node-pool.kubernetes_version
+output "arm-node-pool-kubernetes-version" {
+  value = oci_containerengine_node_pool.oke-arm-node-pool.kubernetes_version
 }
-output "node-size" {
-  value = oci_containerengine_node_pool.oke-node-pool.node_config_details[0].size
+output "arm-node-size" {
+  value = oci_containerengine_node_pool.oke-arm-node-pool.node_config_details[0].size
 }
-output "node-shape" {
-  value = oci_containerengine_node_pool.oke-node-pool.node_shape
+output "arm-node-shape" {
+  value = oci_containerengine_node_pool.oke-arm-node-pool.node_shape
+}
+
+output "amd-node-pool-name" {
+  value = oci_containerengine_node_pool.oke-amd-node-pool.name
+}
+output "amd-node-pool-OCID" {
+  value = oci_containerengine_node_pool.oke-amd-node-pool.id
+}
+output "amd-node-pool-kubernetes-version" {
+  value = oci_containerengine_node_pool.oke-amd-node-pool.kubernetes_version
+}
+output "amd-node-size" {
+  value = oci_containerengine_node_pool.oke-amd-node-pool.node_config_details[0].size
+}
+output "amd-node-shape" {
+  value = oci_containerengine_node_pool.oke-amd-node-pool.node_shape
 }

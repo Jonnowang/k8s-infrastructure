@@ -3,15 +3,20 @@
 resource "oci_containerengine_cluster" "oke-cluster" {
     # Required
     compartment_id = oci_identity_compartment.tf-compartment.id
-    kubernetes_version = "v1.30.1"
-    name = "constellation-cluster-1"
+    kubernetes_version = var.kubernetes_node_version
+    name = "constellation-cluster"
     type = "BASIC_CLUSTER"
     vcn_id = module.vcn.vcn_id
 
-    # Place public endpoints in VCN
+    # Place k8s API endpoint in public subnet
     endpoint_config {
         is_public_ip_enabled = true
-        subnet_id = oci_core_subnet.vcn-public-subnet.id
+        subnet_id = oci_core_subnet.vcn-kubernetes-api-subnet.id
+    }
+
+    # CNI type
+    cluster_pod_network_options {
+        cni_type = var.kubernetes_cni_type
     }
 
     # Optional
@@ -24,6 +29,6 @@ resource "oci_containerengine_cluster" "oke-cluster" {
             pods_cidr = var.pods_cidr_range
             services_cidr = var.services_cidr_range
         }
-        service_lb_subnet_ids = [oci_core_subnet.vcn-public-subnet.id]
+        service_lb_subnet_ids = [oci_core_subnet.vcn-public-lb-subnet.id]
     }  
 }

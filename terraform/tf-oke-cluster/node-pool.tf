@@ -1,5 +1,6 @@
 # Source from https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/containerengine_node_pool
 
+# Managed node pool with 2 ARM nodes
 resource "oci_containerengine_node_pool" "oke-arm-node-pool" {
     # Required
     cluster_id = oci_containerengine_cluster.oke-cluster.id
@@ -9,11 +10,15 @@ resource "oci_containerengine_node_pool" "oke-arm-node-pool" {
     node_config_details{
         placement_configs{
             availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
-            subnet_id = oci_core_subnet.vcn-private-subnet.id
+            subnet_id = oci_core_subnet.vcn-worker-node-subnet.id
         } 
         placement_configs{
             availability_domain = data.oci_identity_availability_domains.ads.availability_domains[1].name
-            subnet_id = oci_core_subnet.vcn-private-subnet.id
+            subnet_id = oci_core_subnet.vcn-worker-node-subnet.id
+        }
+        node_pool_pod_network_option_details {
+            cni_type = var.kubernetes_cni_type
+            pod_subnet_ids = [oci_core_subnet.vcn-pods-subnet.id]
         }
         size = 2
     }
@@ -24,9 +29,9 @@ resource "oci_containerengine_node_pool" "oke-arm-node-pool" {
     }
 
     node_source_details {
-        image_id = var.ubuntu_2404_minimal_aarch
+        image_id = var.oracle_9_minimal_aarch
         source_type = "image"
-        boot_volume_size_in_gbs = 30
+        boot_volume_size_in_gbs = var.default_node_boot_volume_gbs
     }
  
     # Optional
@@ -37,6 +42,7 @@ resource "oci_containerengine_node_pool" "oke-arm-node-pool" {
 }
 
 
+# Managed node pool with 2 AMD nodes
 resource "oci_containerengine_node_pool" "oke-amd-node-pool" {
     # Required
     cluster_id = oci_containerengine_cluster.oke-cluster.id
@@ -46,11 +52,15 @@ resource "oci_containerengine_node_pool" "oke-amd-node-pool" {
     node_config_details{
         placement_configs{
             availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
-            subnet_id = oci_core_subnet.vcn-private-subnet.id
+            subnet_id = oci_core_subnet.vcn-worker-node-subnet.id
         } 
         placement_configs{
             availability_domain = data.oci_identity_availability_domains.ads.availability_domains[1].name
-            subnet_id = oci_core_subnet.vcn-private-subnet.id
+            subnet_id = oci_core_subnet.vcn-worker-node-subnet.id
+        }
+        node_pool_pod_network_option_details {
+            cni_type = var.kubernetes_cni_type
+            pod_subnet_ids = [oci_core_subnet.vcn-pods-subnet.id]
         }
         size = 2
     }
@@ -61,9 +71,9 @@ resource "oci_containerengine_node_pool" "oke-amd-node-pool" {
     }
 
     node_source_details {
-        image_id = var.ubuntu_2404_minimal_amd
+        image_id = var.oracle_9_minimal_amd
         source_type = "image"
-        boot_volume_size_in_gbs = 30
+        boot_volume_size_in_gbs = var.default_node_boot_volume_gbs
     }
  
     # Optional
