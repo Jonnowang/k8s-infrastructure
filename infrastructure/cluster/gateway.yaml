@@ -1,0 +1,35 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: constellation-gateway
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  gatewayClassName: constellation-gateway
+  infrastructure:
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: constellation-proxy-config
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+    - name: https-jonnowang
+      protocol: HTTPS
+      port: 443
+      hostname: jonnowang.duckdns.org
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: frontend-portfolio-tls
+    - name: https-jonnowang-code
+      protocol: HTTPS
+      port: 443
+      hostname: code.jonnowang.duckdns.org
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: codeserver-tls

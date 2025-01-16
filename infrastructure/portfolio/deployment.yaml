@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: portfolio-jonathan
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: portfolio-jonathan
       version: v1
   template:
     metadata:
       labels:
-        app: backend
+        app: portfolio-jonathan
         version: v1
     spec:
       containers:
-        - image: wordpress:6.7.1-php8.1-apache
-          imagePullPolicy: IfNotPresent
-          name: backend
+        - image: lhr.ocir.io/lrwuubtwxjma/constellation-images/jonno-personal-frontend:latest
+          imagePullPolicy: Always
+          name: portfolio-jonathan
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "250m"
-            limits:
               memory: "128Mi"
-              cpu: "500m"
+              cpu: 0.1
+            limits:
+              memory: "256Mi"
+              cpu: 0.2
           ports:
             - containerPort: 80
           env:
@@ -36,3 +36,5 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+      imagePullSecrets:
+        - name: ocirsecret

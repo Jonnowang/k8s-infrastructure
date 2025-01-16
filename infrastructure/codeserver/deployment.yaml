@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: backend
+        version: v1
+    spec:
+      containers:
+        - image: lscr.io/linuxserver/code-server:latest
+          imagePullPolicy: IfNotPresent
+          name: backend
+          resources:
+            requests:
+              memory: "2048Mi"
+              cpu: 0.5
+            limits:
+              memory: "4096Mi"
+              cpu: 1
+          ports:
+            - containerPort: 8443
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Etc/UTC"
+            - name: PASSWORD
+              value: REDACTED
+            - name: SUDO_PASSWORD
+              value: REDACTED
+            - name: DEFAULT_WORKSPACE
+              value: "/config/workspace"
+          volumeMounts:
+            - mountPath: /config
+              name: workspace
+      volumes:
+        - name: workspace
+          emptyDir:
+            sizeLimit: 5000Mi

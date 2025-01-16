@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio-jonathan
+  labels:
+    app: portfolio-jonathan
+    service: portfolio-jonathan
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 4321
+      targetPort: 80
+  selector:
+    app: portfolio-jonathan
