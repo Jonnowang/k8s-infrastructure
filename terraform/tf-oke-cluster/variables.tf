@@ -35,6 +35,12 @@ variable public_lb_cidr_range {
   description = "CIDR block for public load balancers"
 }
 
+variable mysql_db_cidr_range {
+  type        = string
+  default     = "10.0.6.0/24"
+  description = "CIDR block for oracle-managed mysql db"
+}
+
 variable subnet_dns_label {
   type        = string
   default     = "constellation"

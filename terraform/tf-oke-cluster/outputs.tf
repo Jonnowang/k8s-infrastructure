@@ -123,18 +123,26 @@ output "arm-node-shape" {
   value = oci_containerengine_node_pool.oke-arm-node-pool.node_shape
 }
 
-output "amd-node-pool-name" {
-  value = oci_containerengine_node_pool.oke-amd-node-pool.name
-}
-output "amd-node-pool-OCID" {
-  value = oci_containerengine_node_pool.oke-amd-node-pool.id
-}
-output "amd-node-pool-kubernetes-version" {
-  value = oci_containerengine_node_pool.oke-amd-node-pool.kubernetes_version
-}
-output "amd-node-size" {
-  value = oci_containerengine_node_pool.oke-amd-node-pool.node_config_details[0].size
-}
-output "amd-node-shape" {
-  value = oci_containerengine_node_pool.oke-amd-node-pool.node_shape
+# output "amd-node-pool-name" {
+#   value = oci_containerengine_node_pool.oke-amd-node-pool.name
+# }
+# output "amd-node-pool-OCID" {
+#   value = oci_containerengine_node_pool.oke-amd-node-pool.id
+# }
+# output "amd-node-pool-kubernetes-version" {
+#   value = oci_containerengine_node_pool.oke-amd-node-pool.kubernetes_version
+# }
+# output "amd-node-size" {
+#   value = oci_containerengine_node_pool.oke-amd-node-pool.node_config_details[0].size
+# }
+# output "amd-node-shape" {
+#   value = oci_containerengine_node_pool.oke-amd-node-pool.node_shape
+# }
+
+# MySql DB
+output "mysql_database" {
+  value = {
+    db_id         = oci_mysql_mysql_db_system.mysql_db_system.id
+    db_ip         = oci_mysql_mysql_db_system.mysql_db_system.ip_address
+  }
 }

@@ -131,6 +131,18 @@ resource "oci_core_security_list" "worker-node-security-list"{
     } 
   }
 
+  # Allow public lbs to reach kube proxy
+	ingress_security_rules { 
+    stateless = false
+    source = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol = "6"
+    tcp_options { 
+      min = 30000
+      max = 32767
+    } 
+  }
+
   # Path discovery
   ingress_security_rules { 
     stateless = false
