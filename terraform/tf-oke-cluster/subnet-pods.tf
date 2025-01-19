@@ -64,6 +64,17 @@ resource "oci_core_security_list" "pods-security-list"{
     } 
   }
 
+  egress_security_rules {
+    stateless = false
+    destination = "0.0.0.0/0"
+    destination_type = "CIDR_BLOCK"
+    protocol = "6"
+    tcp_options { 
+      min = 22
+      max = 22
+    } 
+  }
+
   # DB 
   egress_security_rules {
     stateless = false
