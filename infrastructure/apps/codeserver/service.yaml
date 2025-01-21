@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: personal-codeserver
+  namespace: default
   labels:
-    app: backend
-    service: backend
+    app: personal-codeserver
+    service: personal-codeserver
 spec:
   type: ClusterIP
   ports:
@@ -12,4 +13,4 @@ spec:
       port: 8443
       targetPort: 8443
   selector:
-    app: backend
+    app: personal-codeserver

@@ -1,23 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: personal-codeserver
+  namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: personal-codeserver
       version: v1
   template:
     metadata:
       labels:
-        app: backend
+        app: personal-codeserver
         version: v1
     spec:
       containers:
         - image: lscr.io/linuxserver/code-server:latest
           imagePullPolicy: IfNotPresent
-          name: backend
+          name: personal-codeserver
           resources:
             requests:
               memory: "2048Mi"

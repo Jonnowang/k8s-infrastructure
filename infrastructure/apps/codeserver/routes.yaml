@@ -1,7 +1,8 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: backend
+  name: personal-codeserver
+  namespace: default
 spec:
   parentRefs:
     - name: constellation-gateway
@@ -10,7 +11,7 @@ spec:
     - backendRefs:
         - group: ""
           kind: Service
-          name: backend
+          name: personal-codeserver
           port: 8443
           weight: 1
       matches:
