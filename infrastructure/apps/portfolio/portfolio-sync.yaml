@@ -1,0 +1,12 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: portfolio
+  namespace: default
+spec:
+  interval: 10m0s
+  path: ./infrastructure/apps/portfolio
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
