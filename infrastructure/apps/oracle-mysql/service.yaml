@@ -10,6 +10,5 @@ spec:
   type: ClusterIP
   ports:
     - name: mysql
-      protocal: TCP
       port: 3306
       targetPort: 3306
