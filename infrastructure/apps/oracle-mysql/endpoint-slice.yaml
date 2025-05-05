@@ -2,6 +2,7 @@ apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
   name: oracle-mysql-1
+  namespace: default
   labels:
     kubernetes.io/service-name: oracle-mysql
 addressType: IPv4
