@@ -1,0 +1,15 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: oracle-mysql-1
+  labels:
+    kubernetes.io/service-name: oracle-mysql
+addressType: IPv4
+ports:
+  - name: mysql
+    appProtocol: mysql
+    protocol: TCP
+    port: 3306
+endpoints:
+  - addresses:
+      - "10.0.6.229"

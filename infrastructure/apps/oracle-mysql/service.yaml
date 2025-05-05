@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oracle-mysql
+  namespace: default
+  labels:
+    app: oracle-mysql
+    service: oracle-mysql
+spec:
+  type: ClusterIP
+  ports:
+    - name: mysql
+      protocal: TCP
+      port: 3306
+      targetPort: 3306
