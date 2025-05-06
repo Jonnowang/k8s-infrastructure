@@ -34,12 +34,3 @@ spec:
         certificateRefs:
         - kind: Secret
           name: codeserver-tls
-    - name: tls-mysql
-      protocol: TLS
-      port: 3306
-      hostname: db.jonnowang.duckdns.org
-      tls:
-        mode: Terminate
-        certificateRefs:
-        - kind: Secret
-          name: mysql-tls
