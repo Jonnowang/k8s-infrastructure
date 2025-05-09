@@ -21,11 +21,11 @@ spec:
           name: portfolio-jonathan
           resources:
             requests:
-              memory: "128Mi"
-              cpu: 0.1
+              memory: "16Mi"
+              cpu: 10m
             limits:
-              memory: "256Mi"
-              cpu: 0.2
+              memory: "32Mi"
+              cpu: 20m
           ports:
             - containerPort: 80
           env:
