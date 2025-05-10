@@ -34,3 +34,9 @@ spec:
         certificateRefs:
         - kind: Secret
           name: codeserver-tls
+    - name: mysql-debug
+      protocol: TCP
+      port: 3306
+      allowedRoutes:
+        kinds:
+        - kind: TCPRoute
