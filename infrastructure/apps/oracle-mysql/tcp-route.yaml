@@ -2,6 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
 metadata:
   name: mysql-tcp-1
+  namespace: default
 spec:
   parentRefs:
   - name: constellation-gateway
