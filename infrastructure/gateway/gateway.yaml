@@ -19,7 +19,7 @@ spec:
     - name: https-jonnowang
       protocol: HTTPS
       port: 443
-      hostname: jonnowang.duckdns.org
+      hostname: jonno.wang
       tls:
         mode: Terminate
         certificateRefs:
@@ -28,7 +28,7 @@ spec:
     - name: https-jonnowang-code
       protocol: HTTPS
       port: 443
-      hostname: code.jonnowang.duckdns.org
+      hostname: code.jonno.wang
       tls:
         mode: Terminate
         certificateRefs:
