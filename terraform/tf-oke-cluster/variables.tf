@@ -96,3 +96,17 @@ variable kubernetes_cni_type {
   default     = "OCI_VCN_IP_NATIVE"
   description = "OCI VCN Native CNI"
 }
+
+# MySql db variables
+
+variable "mysql_username" {
+  description = "Database administrator username"
+  type        = string
+  sensitive   = true
+}
+
+variable "mysql_password" {
+  description = "Database administrator password"
+  type        = string
+  sensitive   = true
+}

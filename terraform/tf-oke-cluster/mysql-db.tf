@@ -4,8 +4,8 @@ resource "oci_mysql_mysql_db_system" "mysql_db_system" {
   shape_name          = "MySQL.Free"
   data_storage_size_in_gb = 50
   subnet_id           = oci_core_subnet.vcn-sql-db-subnet.id
-  admin_username      = 
-  admin_password      = 
+  admin_username      = var.mysql_username
+  admin_password      = var.mysql_password
 
   display_name            = "constellation-mysql-db"
   description             = "Constellation MySQL Heatwave Database System"
