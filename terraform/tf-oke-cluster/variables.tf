@@ -81,8 +81,8 @@ variable worker_node_shape_amd {
 
 variable default_node_boot_volume_gbs {
   type        = number
-  default     = 50
-  description = "50Gb default boot volume"
+  default     = 100
+  description = "100Gb default boot volume"
 }
 
 variable kubernetes_node_version {
