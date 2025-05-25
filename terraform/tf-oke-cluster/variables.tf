@@ -55,10 +55,10 @@ variable services_uk_london_1 {
 
 # Worker node definitions
 
-variable oracle_9_minimal_aarch {
+variable oracle_8_aarch64 {
   type        = string
-  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaaekleu5ti4ljq3kuu54c6jbr7pqnhrydepjlpuzpanwyuxxwf66gq"
-  description = "OS image for Oracle 9 Minimal AArch64"
+  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaayexjz3jxnuupritwdg4yrbcxstc5kjepc4jqlvuaaae23dbqzhnq"
+  description = "OS image for Oracle 8 2025-05-19 AArch64"
 }
 
 variable oracle_9_minimal_amd {

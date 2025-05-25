@@ -29,9 +29,13 @@ resource "oci_containerengine_node_pool" "oke-arm-node-pool" {
     }
 
     node_source_details {
-        image_id = var.oracle_9_minimal_aarch
-        source_type = "image"
+        image_id = var.oracle_8_aarch64
+        source_type = "IMAGE"
         boot_volume_size_in_gbs = var.default_node_boot_volume_gbs
+    }
+
+    lifecycle {
+        create_before_destroy = false
     }
  
     # Optional
