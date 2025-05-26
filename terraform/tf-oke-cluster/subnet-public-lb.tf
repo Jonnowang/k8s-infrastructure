@@ -72,4 +72,16 @@ resource "oci_core_security_list" "public-lb-security-list"{
       max = 443
     } 
   }
+
+	# Allow all mysql traffic to reach public_lb
+	ingress_security_rules { 
+    stateless = false
+    source = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol = "6"
+    tcp_options { 
+      min = 3306
+      max = 3306
+    } 
+  }
 }
