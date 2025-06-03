@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chronoseal
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chronoseal
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: chronoseal
+        version: v1
+    spec:
+      containers:
+        - image: lhr.ocir.io/lrwuubtwxjma/constellation-images/chronoseal:0.0.1
+          imagePullPolicy: IfNotPresent
+          name: chronoseal
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: 200m
+            limits:
+              memory: "512Mi"
+              cpu: 200m
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+              name: chronoseal-production-env
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+      imagePullSecrets:
+        - name: ocirsecret

@@ -1,0 +1,20 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: chronoseal
+  namespace: default
+spec:
+  parentRefs:
+    - name: constellation-gateway
+      sectionName: https-jonnowang-code
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: chronoseal
+          port: 3000
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
