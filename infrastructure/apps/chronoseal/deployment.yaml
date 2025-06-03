@@ -30,7 +30,7 @@ spec:
             - containerPort: 3000
           envFrom:
             - secretRef:
-              name: chronoseal-production-env
+                name: chronoseal-production-env
           env:
             - name: POD_NAME
               valueFrom:
