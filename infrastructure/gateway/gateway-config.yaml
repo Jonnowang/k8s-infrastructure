@@ -14,6 +14,9 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
+      envoyDeployment:
+        container:
+          image: docker.io/envoyproxy/envoy:distroless-v1.34-latest
       envoyService:
         annotations:
           # Force proxy deployment to use these settings for deployment

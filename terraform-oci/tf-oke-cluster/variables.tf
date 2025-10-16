@@ -87,7 +87,7 @@ variable default_node_boot_volume_gbs {
 
 variable kubernetes_node_version {
   type        = string
-  default     = "v1.33.1"
+  default     = "v1.34.1"
   description = "Current version of Kubernetes to use for OKE cluster"
 }
 
