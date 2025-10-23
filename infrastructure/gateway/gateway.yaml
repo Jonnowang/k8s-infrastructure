@@ -34,6 +34,15 @@ spec:
         certificateRefs:
         - kind: Secret
           name: codeserver-tls
+    - name: https-jonnowang-vert
+      protocol: HTTPS
+      port: 443
+      hostname: vert.jonno.wang
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: vert-tls
     - name: mysql-debug
       protocol: TCP
       port: 3306

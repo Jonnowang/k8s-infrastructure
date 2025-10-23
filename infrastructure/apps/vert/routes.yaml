@@ -1,0 +1,38 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: vert
+  namespace: default
+spec:
+  parentRefs:
+    - name: constellation-gateway
+      sectionName: https-jonnowang-vert
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: vert
+          port: 5173
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: vert-http-redirect
+  namespace: default
+spec:
+  parentRefs:
+  - name: constellation-gateway
+    sectionName: http
+  hostnames:
+  - vert.jonno.wang
+  rules:
+  - filters:
+    - type: RequestRedirect
+      requestRedirect:
+        scheme: https
+        statusCode: 301
