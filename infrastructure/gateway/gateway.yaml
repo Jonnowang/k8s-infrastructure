@@ -43,6 +43,15 @@ spec:
         certificateRefs:
         - kind: Secret
           name: vert-tls
+    - name: https-jonnowang-raffle
+      protocol: HTTPS
+      port: 443
+      hostname: raffle.jonno.wang
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: raffle-tls
     - name: mysql-debug
       protocol: TCP
       port: 3306

@@ -1,0 +1,38 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: raffle
+  namespace: default
+spec:
+  parentRefs:
+    - name: constellation-gateway
+      sectionName: https-jonnowang-raffle
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: raffle
+          port: 5173
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: raffle-http-redirect
+  namespace: default
+spec:
+  parentRefs:
+  - name: constellation-gateway
+    sectionName: http
+  hostnames:
+  - raffle.jonno.wang
+  rules:
+  - filters:
+    - type: RequestRedirect
+      requestRedirect:
+        scheme: https
+        statusCode: 301

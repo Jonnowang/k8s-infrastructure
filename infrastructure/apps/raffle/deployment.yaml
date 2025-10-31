@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: raffle
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: raffle
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: raffle
+        version: v1
+    spec:
+      containers:
+        - image: lhr.ocir.io/lrwuubtwxjma/constellation-images/give-a-raffle:1.0.0
+          imagePullPolicy: Always
+          name: raffle
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: 150m
+            limits:
+              memory: "256Mi"
+              cpu: 150m
+          ports:
+            - containerPort: 3000
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+      imagePullSecrets:
+        - name: ocirsecret
