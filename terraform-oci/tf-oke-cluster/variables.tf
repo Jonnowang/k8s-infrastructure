@@ -57,8 +57,8 @@ variable services_uk_london_1 {
 
 variable oracle_8_aarch64 {
   type        = string
-  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaayexjz3jxnuupritwdg4yrbcxstc5kjepc4jqlvuaaae23dbqzhnq"
-  description = "OS image for Oracle 8 2025-05-19 AArch64"
+  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaaavhcvlf3o2ven2l6cia3i4ton4gurepucrfhrcwj2qfekrr3pqha"
+  description = "OS image for Oracle 8 2025-09-16 AArch64"
 }
 
 variable oracle_9_minimal_amd {
