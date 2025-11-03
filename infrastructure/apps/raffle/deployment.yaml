@@ -16,7 +16,7 @@ spec:
         version: v1
     spec:
       containers:
-        - image: lhr.ocir.io/lrwuubtwxjma/constellation-images/give-a-raffle:1.2.0
+        - image: lhr.ocir.io/lrwuubtwxjma/constellation-images/give-a-raffle:1.3.0
           imagePullPolicy: Always
           name: raffle
           resources:
