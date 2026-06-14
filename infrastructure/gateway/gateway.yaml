@@ -52,6 +52,15 @@ spec:
         certificateRefs:
         - kind: Secret
           name: raffle-tls
+    - name: https-jonnowang-chore
+      protocol: HTTPS
+      port: 443
+      hostname: chore.jonno.wang
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: chore-store-tls
     - name: mysql-debug
       protocol: TCP
       port: 3306

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chore-store
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chore-store
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: chore-store
+        version: v1
+    spec:
+      containers:
+        - image: lhr.ocir.io/lrwuubtwxjma/constellation-images/moo-chore-store:latest
+          imagePullPolicy: Always
+          name: chore-store
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: 100m
+            limits:
+              memory: "256Mi"
+              cpu: 200m
+          ports:
+            - containerPort: 80
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+      imagePullSecrets:
+        - name: ocirsecret
