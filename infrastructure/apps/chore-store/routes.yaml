@@ -12,7 +12,7 @@ spec:
         - group: ""
           kind: Service
           name: chore-store
-          port: 80
+          port: 5174
           weight: 1
       matches:
         - path:
