@@ -4909,11 +4909,11 @@ spec:
             port: http
         resources:
           limits:
-            cpu: 50m
-            memory: 64Mi
+            cpu: 200m
+            memory: 256Mi
           requests:
-            cpu: 50m
-            memory: 64Mi
+            cpu: 200m
+            memory: 256Mi
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
