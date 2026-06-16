@@ -40,16 +40,22 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: raffle-env
+                  name: moo-chore-env
                   key: DB_USER
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: raffle-env
+                  name: moo-chore-env
                   key: DB_PASSWORD
             - name: DB_HOST
-              value: "oracle-mysql.default.svc.cluster.local"
+              valueFrom:
+                secretKeyRef:
+                  name: moo-chore-env
+                  key: DB_HOST
             - name: DB_NAME
-              value: "moo_chore"
+              valueFrom:
+                secretKeyRef:
+                  name: moo-chore-env
+                  key: DB_NAME
       imagePullSecrets:
         - name: ocirsecret
