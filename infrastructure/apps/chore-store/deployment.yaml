@@ -37,5 +37,22 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: raffle-env
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: raffle-env
+                  key: DB_PASSWORD
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: raffle-env
+                  key: DB_HOST
+            - name: DB_NAME
+              value: "moo_chore"
       imagePullSecrets:
         - name: ocirsecret
