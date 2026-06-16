@@ -48,10 +48,7 @@ spec:
                   name: raffle-env
                   key: DB_PASSWORD
             - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: raffle-env
-                  key: DB_HOST
+              value: "oracle-mysql.default.svc.cluster.local"
             - name: DB_NAME
               value: "moo_chore"
       imagePullSecrets:
