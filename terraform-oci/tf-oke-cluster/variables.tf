@@ -57,8 +57,8 @@ variable services_uk_london_1 {
 
 variable oracle_8_aarch64 {
   type        = string
-  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaaavhcvlf3o2ven2l6cia3i4ton4gurepucrfhrcwj2qfekrr3pqha"
-  description = "OS image for Oracle 8 2025-09-16 AArch64"
+  default     = "ocid1.image.oc1.uk-london-1.aaaaaaaatevltwjfk3zfm27c2kbxwoaxi5lqet7uvf3h4tdkp5aqtixy5fhq"
+  description = "OS image for Oracle 8 OKE-1.36.4 2026-09-18 AArch64"
 }
 
 variable oracle_9_minimal_amd {
@@ -87,7 +87,7 @@ variable default_node_boot_volume_gbs {
 
 variable kubernetes_node_version {
   type        = string
-  default     = "v1.34.1"
+  default     = "v1.36.4"
   description = "Current version of Kubernetes to use for OKE cluster"
 }
 

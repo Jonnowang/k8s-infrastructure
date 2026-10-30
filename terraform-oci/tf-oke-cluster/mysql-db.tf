@@ -11,6 +11,11 @@ resource "oci_mysql_mysql_db_system" "mysql_db_system" {
   description             = "Constellation MySQL Heatwave Database System"
   port   = 3306
   port_x = 33060
+
+  # Credentials aren't returned by the OCI API, so ignore them to avoid forced replacement
+  lifecycle {
+    ignore_changes = [admin_username, admin_password]
+  }
 }
 
 
