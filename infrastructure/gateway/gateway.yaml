@@ -61,6 +61,15 @@ spec:
         certificateRefs:
         - kind: Secret
           name: chore-store-tls
+    - name: https-jonnowang-budget
+      protocol: HTTPS
+      port: 443
+      hostname: budget.jonno.wang
+      tls:
+        mode: Terminate
+        certificateRefs:
+        - kind: Secret
+          name: actual-tls
     - name: mysql-debug
       protocol: TCP
       port: 3306
